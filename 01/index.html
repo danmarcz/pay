@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="FormController" class="example">
+<form name="myForm">
+  <label>Card number:</label><br>
+  <input type="text" ng-model="card.number" ng-pattern="card_number" size="20" maxlength="20" required/> <br><br>
+
+  <label>Expiration (YYMM):</label><br>
+  <input type="text" ng-model="card.exp" ng-pattern="card_exp" size="4" maxlength="4" required> <br><br>
+
+  <label>Security code:</label><br>
+  <input type="text" ng-model="card.code" ng-pattern="card_code" size="4" maxlength="4" required> <br><br>
+
+  <button ng-click="send()" ng-disabled="isSendDisabled()">Send</button>
+</form>
+
+  <hr/>
+  Debug View:
+  <pre>card={{card | json}}</pre>
+</div>
+
+
+</body>
+</html>
