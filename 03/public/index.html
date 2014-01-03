@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<form role="form" name="myForm" ng-controller="FormController">
+
+  <div class="row" ng-repeat="item in items">
+    <hr/>
+    <div class="col-md-2">
+      <label for="exampleSelect">Číslo pokoje</label>
+      <select id="exampleSelect" ng-model="item.room" ng-options="r for r in rooms" class="form-control"></select>
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput1">Dospělí</label>
+      <input type="number" ng-model="item.adults" class="form-control" id="exampleInput1">
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput2">Děti</label>
+      <input type="number" ng-model="item.children" class="form-control" id="exampleInput2">
+    </div>
+    <div class="col-md-1">
+      <label for="removeRoom">&nbsp;</label>
+      <button type="button" id="removeRoom" ng-click="items.splice($index, 1)" class="btn btn-danger form-control">&times;</button>
+    </div>
+  </div>
+  <br/>
+  <button type="submit" id="addRoom" ng-click="addRoom()" class="btn btn-success">+</button>
+  <label for="addRoom">Přidat další pokoj</label>
+
+  <hr/>
+  Debug View:
+  <pre>items={{items | json}}</pre>
+
+</form>
+
+
+</div>
+
+
+</body>
+</html>
