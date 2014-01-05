@@ -12,29 +12,84 @@
 
 <form role="form" name="myForm" ng-controller="FormController">
 
-  <div class="row" ng-repeat="item in items">
+ <div ng-repeat="item in items">
+  <div class="row">
     <hr/>
-    <div class="col-md-2">
+    <div class="form-group col-xs-2">
       <label for="exampleSelect">Číslo pokoje</label>
-      <select id="exampleSelect" ng-model="item.room" ng-options="r for r in rooms" class="form-control"></select>
+      <select id="exampleSelect" ng-model="item.room" ng-options="r.id for r in rooms" class="form-control"></select>
     </div>
-    <div class="col-md-1">
-      <label for="exampleInput1">Dospělí</label>
-      <input type="number" ng-model="item.adults" class="form-control" id="exampleInput1">
+    <div class="col-xs-4">
+      <label for="note">Hosté</label>
+      <input type="text" ng-model="item.name" class="form-control">
     </div>
-    <div class="col-md-1">
-      <label for="exampleInput2">Děti</label>
-      <input type="number" ng-model="item.children" class="form-control" id="exampleInput2">
+    <div class="col-xs-4">
+      <label>&nbsp;</label>
+      <span class="form-control">{{item.room.desc}}</span>
     </div>
-    <div class="col-md-1">
+    <div class="col-xs-1">
       <label for="removeRoom">&nbsp;</label>
       <button type="button" id="removeRoom" ng-click="items.splice($index, 1)" class="btn btn-danger form-control">&times;</button>
     </div>
   </div>
-  <br/>
+  <div class="row">
+    <div class="col-md-2">
+      <label>&nbsp;</label>
+      <h4>Ubytování</h4> 
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput1">Dospělí</label>
+      <input type="number" ng-model="item.acc.adults" ng-change="change(item)" class="form-control" id="exampleInput1">
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput2">Děti</label>
+      <input type="number" ng-model="item.acc.children" ng-change="change(item)" title="děti 3-12 let" class="form-control" id="exampleInput2">
+    </div>
+    <div class="col-md-1">
+      <label>Přistýlka</label><br/>
+      <input type="checkbox" ng-model="item.acc.extrabed" ng-change="change(item)" value="yes"> 
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput3">Postýlka</label>
+      <input type="number" ng-model="item.acc.babybeds" ng-change="change(item)" class="form-control" id="exampleInput3">
+    </div>
+    <div class="col-md-2">
+      <label for="exampleInput4">Cena za ubytování</label>
+      <input type="text" ng-model="item.accPrice" class="form-control" id="exampleInput4" readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label>&nbsp;</label>
+      <h4>Strava</h4> 
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput1Food">Dospělí</label>
+      <input type="number" ng-model="item.food.adults" ng-change="change(item)" class="form-control" id="exampleInput1Food">
+    </div>
+    <div class="col-md-1">
+      <label for="exampleInput2Food">Děti</label>
+      <input type="number" ng-model="item.food.children" ng-change="change(item)" title="děti 3-12 let" class="form-control" id="exampleInput2Food">
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <label for="exampleInput4">Cena za stravu</label>
+      <input type="text" ng-model="item.foodPrice" class="form-control" id="exampleInput4" readonly>
+    </div>
+  </div>
+ </div>
+
+  <hr/>
+
   <button type="submit" id="addRoom" ng-click="addRoom()" class="btn btn-success">+</button>
   <label for="addRoom">&nbsp;Přidat další pokoj</label>
 
+  <hr/>
+
+  <div class="row">
+    Cena celkem: {{ totalPrice }}
+  </div>
+ 
   <hr/>
   Debug View:
   <pre>items={{items | json}}</pre>
