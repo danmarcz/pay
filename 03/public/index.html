@@ -12,6 +12,19 @@
 
 <form role="form" name="myForm" ng-controller="FormController">
 
+  <div class="row">
+    <hr/>
+    <div class="form-group col-xs-2">
+      <label for="days">Počet dní</label>
+      <input type="number" min="0" id="days" ng-model="days" ng-change="changeAll()" class="form-control">
+    </div>
+    <div class="form-group col-xs-2">
+      <label for="foodType">Stravování</label>
+      <select id="foodType" ng-model="foodType" ng-change="changeAll()" ng-options="ft.name for ft in foodTypes" class="form-control"></select>
+    </div>
+  </div>
+
+
  <div ng-repeat="item in items">
   <div class="row">
     <hr/>
@@ -93,6 +106,8 @@
   <hr/>
   Debug View:
   <pre>items={{items | json}}</pre>
+  <pre>foodType={{foodType | json}}</pre>
+  <pre>days={{days | json}}</pre>
 
 </form>
 
