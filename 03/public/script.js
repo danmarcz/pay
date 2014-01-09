@@ -61,12 +61,15 @@ function FormController($scope, $http) {
     }
 
     item.accPrice = item.accPrice * $scope.days;
-    // if ($scope.days == 1) {
-    //   item.accPrice = item.accPrice * 1.1;
-    // }
-    // if ($scope.days > 2) {
-    //   item.accPrice = item.accPrice * 0.9;
-    // }
+    item.acc.priceDesc = '';
+    if ($scope.days == 1) {
+      item.accPrice = Math.floor(item.accPrice * 1.1);
+      item.acc.priceDesc = 'Cena včetně 10% přirážky';
+    }
+    if ($scope.days > 2) {
+      item.accPrice = Math.floor(item.accPrice * 0.9);
+      item.acc.priceDesc = 'Cena včetně 10% slevy';
+    }
 
     item.foodPrice = item.food.adults * $scope.foodType.adultPrice 
     + item.food.children * $scope.foodType.childPrice;

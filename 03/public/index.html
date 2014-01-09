@@ -70,6 +70,10 @@
       <label for="exampleInput4">Cena za ubytování</label>
       <input type="text" ng-model="item.accPrice" class="form-control" id="exampleInput4" readonly>
     </div>
+    <div class="col-md-3">
+      <label for="exampleInput9">Poznámka</label>
+      <input type="text" ng-model="item.acc.priceDesc" class="form-control" id="exampleInput9" readonly>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-2">
@@ -100,7 +104,8 @@
   <hr/>
 
   <div class="row">
-    Cena celkem: {{ totalPrice }}
+    <p>Cena celkem: <strong>{{ totalPrice }} Kč</strong></p>
+    <p>Všechny uvedené ceny jsou včetně DPH.</p>
   </div>
  
   <hr/>
